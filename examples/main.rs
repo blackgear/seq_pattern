@@ -1,5 +1,5 @@
-extern crate spade;
-use spade::{EventSet, Record, Spade};
+extern crate sequential_pattern;
+use sequential_pattern::{EventSet, Record, Spade};
 
 const DATA: &[(u32, i32, u8)] = &[
     (0, 1, 0b10000000),
@@ -11,7 +11,7 @@ const DATA: &[(u32, i32, u8)] = &[
 ];
 
 fn main() {
-    let spade: Spade = DATA
+    let mut spade: Spade = DATA
         .iter()
         .map(|&(sid, eid, event_set)| {
             let record = Record::new(sid, eid);
@@ -20,10 +20,10 @@ fn main() {
         })
         .collect();
 
-    spade.process(0);
-    spade.process(0);
-    spade.process(0);
-    spade.process(0);
+    spade.next(0);
+    spade.next(0);
+    spade.next(0);
+    spade.next(0);
     println!("{:?}", spade);
 
     for (pattern, support) in spade.report() {
