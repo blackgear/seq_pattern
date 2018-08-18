@@ -1,0 +1,8 @@
+[package]
+name = "sequential-pattern"
+version = "0.1.0"
+authors = ["tanyu.mobi"]
+
+[dependencies]
+bit-set = "0.5"
+rayon = "1.0"
